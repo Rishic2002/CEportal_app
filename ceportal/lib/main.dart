@@ -123,3 +123,13 @@ post_install do |installer|
 end
 */
 
+/*
+
+Need to work on the UI 
+Adding Essentials file and restructure code accroding to it 
+remove theme files and add theme data to Essentials 
+UI needed for the Backend Data 
+Need to work on Icons in Login Page 
+Need to work on Color schemes in home page 
+Firebase/Mongo Node js backend 
+*/

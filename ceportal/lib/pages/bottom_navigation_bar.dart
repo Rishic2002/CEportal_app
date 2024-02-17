@@ -40,8 +40,8 @@ class _NavBottomState extends State<NavBottom> {
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
               children: <Widget>[
-                const home_page(),
-                NotificationPage(),
+                HomePage(userId: widget.userId), // Pass the userId to HomePage
+                FirestoreDemo(),
                 UserPage(userId: widget.userId),
                 const SettingsPage(),
               ],

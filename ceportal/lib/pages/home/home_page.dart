@@ -1,15 +1,45 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../notification_screen.dart';
 import 'jobCards.dart';
 
-class home_page extends StatefulWidget {
-  const home_page({super.key});
+class HomePage extends StatefulWidget {
+  final String userId;
+
+  const HomePage({super.key, required this.userId});
 
   @override
-  State<home_page> createState() => _home_pageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _home_pageState extends State<home_page> {
-  var user_name = "Rishi";
+class _HomePageState extends State<HomePage> {
+  String _username = 'Username';
+
+  Future<void> _fetchUserData() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.userId)
+          .get();
+      if (snapshot.exists) {
+        final data = snapshot.data();
+        if (data != null) {
+          setState(() {
+            _username = data["name"] as String? ?? 'Default Username';
+          });
+        }
+      }
+    } catch (error) {
+      const CircularProgressIndicator();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserData();
+  }
+
   var location = "Delhi,India";
   TextEditingController Controller = TextEditingController();
 
@@ -23,7 +53,7 @@ class _home_pageState extends State<home_page> {
             Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 30,
+                  height: MediaQuery.of(context).size.height / 10,
                 ),
                 Padding(
                     padding: EdgeInsets.symmetric(
@@ -40,7 +70,7 @@ class _home_pageState extends State<home_page> {
                       ),
                       Container(
                         child: Text(
-                          "Welcome back, $user_name!",
+                          "Welcome back, $_username!",
                           style: const TextStyle(
                               fontSize: 25,
                               fontStyle: FontStyle.italic,
@@ -48,7 +78,7 @@ class _home_pageState extends State<home_page> {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width / 9,
+                        width: MediaQuery.of(context).size.width / 13,
                       ),
                       Container(
                         child: const Icon(Icons.notifications),
@@ -72,8 +102,8 @@ class _home_pageState extends State<home_page> {
                       // margin: EdgeInsets.only(left: 20),
                       child: Text(
                         location,
-                        style:
-                            const TextStyle(fontFamily: "INTER", color: Colors.grey),
+                        style: const TextStyle(
+                            fontFamily: "INTER", color: Colors.grey),
                       ),
                     ),
                   ],
@@ -111,7 +141,6 @@ class _home_pageState extends State<home_page> {
                                     });
                                   }
                                   Controller.text = value;
-                                  print(value);
                                   Controller.selection =
                                       TextSelection.fromPosition(TextPosition(
                                           offset: Controller.text.length));
@@ -323,7 +352,7 @@ class _home_pageState extends State<home_page> {
                     TextButton(
                         onPressed: () {
                           print("job 1 buton pressd\n");
-                          Navigator.pushNamed(context, 'Jobs_Detail');
+                          FirestoreDemo();
                         },
                         child: const JobCard(
                             title: "Job_1",
