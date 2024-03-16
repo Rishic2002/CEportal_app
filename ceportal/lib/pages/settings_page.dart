@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../Login/signin_page.dart';
+import '../Utils/utils.dart';
 import 'settings_list.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -41,7 +42,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Welcome'),
+        title: myText('Welcome',context: context),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -69,9 +70,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   }),
                 ),
               ),
-              const Text(
+               myText(
                 "User Settings",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+               fontWeight: FontWeight.bold, fontSize: 15,
+                   context: context
               ),
               const SizedBox(
                 height: 20,

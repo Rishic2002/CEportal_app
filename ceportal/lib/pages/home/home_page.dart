@@ -1,5 +1,9 @@
+import 'dart:js';
+
+import 'package:ceportal/Utils/theme_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../../Utils/utils.dart';
 import '../notification_screen.dart';
 import 'jobCards.dart';
 
@@ -69,12 +73,13 @@ class _HomePageState extends State<HomePage> {
                         width: MediaQuery.of(context).size.width / 20,
                       ),
                       Container(
-                        child: Text(
+                        child: myText(
+                          context:context,
                           "Welcome back, $_username!",
-                          style: const TextStyle(
+
                               fontSize: 25,
-                              fontStyle: FontStyle.italic,
-                              fontFamily: "Abeezee"),
+
+
                         ),
                       ),
                       SizedBox(
@@ -100,10 +105,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Container(
                       // margin: EdgeInsets.only(left: 20),
-                      child: Text(
-                        location,
-                        style: const TextStyle(
-                            fontFamily: "INTER", color: Colors.grey),
+                      child: myText(
+                        textColor: PrimaryColors().grey,
+                        location,context: null,
                       ),
                     ),
                   ],
@@ -174,17 +178,15 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Container(
-                  child: const Padding(
+                  child:  Padding(
                     padding: EdgeInsets.all(15.0),
                     child: Row(
                       children: [
-                        Text(
+                        myText(
                           "Categories",
-                          style: TextStyle(
-                              fontFamily: "Abeezee",
-                              fontStyle: FontStyle.italic,
+
                               fontWeight: FontWeight.w600,
-                              fontSize: 18),
+                              fontSize: 18, context: context,
                         ),
                       ],
                     ),
@@ -229,10 +231,9 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                                const Text(
-                                  "Job",
-                                  style: TextStyle(
-                                      fontFamily: "Abeezee", fontSize: 12),
+                                myText(
+                                  "Job", context: context,
+
                                 )
                               ],
                             ),
@@ -271,10 +272,9 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                                const Text(
-                                  "Scholarship",
-                                  style: TextStyle(
-                                      fontFamily: "Abeezee", fontSize: 11),
+                                myText(
+                                  "Scholarship", context: context,
+
                                 )
                               ],
                             ),
@@ -312,10 +312,9 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                                const Text(
-                                  "Scheme",
-                                  style: TextStyle(
-                                      fontFamily: "Abeezee", fontSize: 12),
+                                 myText(
+                                  "Scheme", context: context,
+
                                 )
                               ],
                             ),
@@ -325,24 +324,18 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Recent",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: "Abeezee",
-                            fontStyle: FontStyle.italic),
+                      myText(
+                        "Recent", context: context,
+
                       ),
-                      Text(
-                        "see all",
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: "Abeezee",
-                            fontStyle: FontStyle.italic),
+                      myText(
+                        "see all", context: context,
+
                       )
                     ],
                   ),

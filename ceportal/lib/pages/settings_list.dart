@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../Utils/utils.dart';
+
 class SettingList extends StatelessWidget {
   final dynamic iconasset;
   final String settingsTitle;
@@ -37,7 +39,8 @@ class SettingList extends StatelessWidget {
                         const SizedBox(
                           width: 10.5,
                         ),
-                        Text(
+                        myText(
+                          context: context,
                           settingsTitle,
                         )
                       ],

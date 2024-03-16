@@ -3,6 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../Utils/utils.dart';
+
 class FirestoreDemo extends StatefulWidget {
   @override
   _FirestoreDemoState createState() => _FirestoreDemoState();
@@ -16,7 +18,7 @@ class _FirestoreDemoState extends State<FirestoreDemo> {
         .collection('States') // Access 'States' collection
         .doc('Delhi') // Access 'Delhi' document
         .collection(
-            'Scholarships') // Access 'Scholarships' collection within 'Delhi' document
+            'Scholarships')
         .doc(
             'om8yD92u0uL1qqUeV7WT') // Access 'om8yD92u0uL1qqUeV7WT' document within 'Scholarships' collection
         .get();
@@ -28,7 +30,7 @@ class _FirestoreDemoState extends State<FirestoreDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firestore Demo'),
+        title: myText('Firestore Demo',context: context),
       ),
       body: Center(
         child: FutureBuilder<DocumentSnapshot>(
@@ -37,7 +39,7 @@ class _FirestoreDemoState extends State<FirestoreDemo> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicator();
             } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
+              return myText('Error: ${snapshot.error}', context: context);
             } else {
               // Access the document data
               var data = snapshot.data!.data();
@@ -53,9 +55,9 @@ class _FirestoreDemoState extends State<FirestoreDemo> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      myText(
                         reversedLines[index],
-                        style: TextStyle(fontSize: 16.0),
+                      fontSize: 16.0, context: context,
                       ),
                       SizedBox(height: 8), // Add spacing after each item
                     ],

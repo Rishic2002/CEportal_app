@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:ceportal/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -45,7 +46,7 @@ class _UserPageState extends State<UserPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Profile'),
+        title: myText("Profile", context: context)
       ),
       body: Center(
         // Wrap the Column with Center widget
@@ -60,12 +61,11 @@ class _UserPageState extends State<UserPage> {
                     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
               ),
               const SizedBox(height: 16),
-              Text(
+              myText(
                 'Username: $_username',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                context: context,
               ),
               const SizedBox(height: 8),
               const SizedBox(height: 8),

@@ -1,5 +1,8 @@
+import 'package:ceportal/Utils/theme_helper.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import '../../Utils/utils.dart';
 
 class JobCard extends StatelessWidget {
   const JobCard({super.key, required this.title, required this.date, required this.location});
@@ -27,9 +30,10 @@ class JobCard extends StatelessWidget {
                     margin: EdgeInsets.only(
                         left: MediaQuery.of(context).size.width / 15,
                         top: MediaQuery.of(context).size.height / 50),
-                    child: Text(
+                    child: myText(
+                      context: context,
                       title,
-                      style: const TextStyle(color: Colors.white),
+                      textColor: PrimaryColors().white,
                     )),
                 Container(
                   margin: EdgeInsets.only(
@@ -40,9 +44,10 @@ class JobCard extends StatelessWidget {
                       const Icon(
                         Icons.calendar_month,
                       ),
-                      Text(
+                      myText(
                         date,
-                        style: const TextStyle(color: Colors.white),
+                        context: context,
+                      textColor: PrimaryColors().white,
                       ),
                     ],
                   ),
@@ -53,9 +58,10 @@ class JobCard extends StatelessWidget {
                 left: MediaQuery.of(context).size.width / 15,
                 bottom: MediaQuery.of(context).size.height / 50,
                 top: MediaQuery.of(context).size.height / 50),
-            child: Text(
+            child: myText(
+              context: context,
               location,
-              style: const TextStyle(color: Colors.white),
+              textColor: PrimaryColors().white,
               textAlign: TextAlign.left,
             ),
           )

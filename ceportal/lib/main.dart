@@ -91,45 +91,14 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-/* IOS POD ISSUE SOLVE COMMANDS 
-cd ios
-pod cache clean --all
-Pod clean
-pod deintegrate
-sudo gem install cocoapods-deintegrate cocoapods-clean
 
-sudo arch -x86_64 gem install ffi
-arch -x86_64 pod repo update
-arch -x86_64 pod install
-
-
-
-- Error (Xcode): DT_TOOLCHAIN_DIR cannot be used to evaluate LIBRARY_SEARCH_PATHS, use TOOLCHAIN_DIR instead
-
-Could not build the application for the simulator.
-Error launching application on iPhone 15 Pro Max.
-
-To perform this replacement, you can add the following code snippet at the end of your project's Podfile:
-
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      xcconfig_path = config.base_configuration_reference.real_path
-      xcconfig = File.read(xcconfig_path)
-      xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
-      File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
-    end
-  end
-end
-*/
 
 /*
-
 Need to work on the UI 
-Adding Essentials file and restructure code accroding to it 
+Adding Essentials file and restructure code accroding to it  // Integrate Essentials and helperfunctions file into the app
 remove theme files and add theme data to Essentials 
 UI needed for the Backend Data 
-Need to work on Icons in Login Page 
+Need to work on Icons in Login Page
 Need to work on Color schemes in home page 
 Firebase/Mongo Node js backend 
 */
