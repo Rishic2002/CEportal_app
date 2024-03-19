@@ -2,10 +2,9 @@ import 'package:ceportal/Login/initialinfo.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Theme/themeprovider.dart';
 import 'firebase_options.dart';
 import 'pages/bottom_navigation_bar.dart';
 
@@ -14,11 +13,9 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(ChangeNotifierProvider(
-    create: (context) => ThemeProvider(), // Initialize your ThemeProvider
-
-    child: const MyApp(),
-  ));
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -67,29 +64,25 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) {
-        return MaterialApp(
-          title: 'My App',
-          theme: themeProvider.themeData,
-          home: _isLoading
-              ? _buildLoadingScreen()
-              : _userId != null
-                  ? NavBottom(userId: _userId!)
-                  : const InitialInfo(),
-        );
-      },
-    );
-  }
-
-  Widget _buildLoadingScreen() {
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
+    return MaterialApp(
+      title: 'My App',
+      home: _isLoading
+          ? _buildLoadingScreen()
+          : _userId != null
+              ? NavBottom(userId: _userId!)
+              : const InitialInfo(),
     );
   }
 }
+
+Widget _buildLoadingScreen() {
+  return const Scaffold(
+    body: Center(
+      child: CircularProgressIndicator(),
+    ),
+  );
+}
+
 
 
 
